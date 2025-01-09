@@ -681,7 +681,7 @@ extern "C" {
 
 /* Pipe trace mappings */
 #undef sys_port_trace_k_pipe_init
-#define sys_port_trace_k_pipe_init(pipe, ...)                                       \
+#define sys_port_trace_k_pipe_init(pipe, buffer, size)                              \
     sys_trace_k_pipe_init(pipe, buffer, size)
 #undef sys_port_trace_k_pipe_cleanup_enter
 #define sys_port_trace_k_pipe_cleanup_enter(pipe, ...)                              \
