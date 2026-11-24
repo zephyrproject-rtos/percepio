@@ -48,7 +48,7 @@ typedef struct DfmStorageMetadata {
 #define DFM_STORAGE_PORT_FCB_AREA_NAME dfm_partition
 
 /* Ensure that the sector count and size is compatible with the given partition */
-#if (FIXED_PARTITION_SIZE(dfm_partition) < (CONFIG_PERCEPIO_DFM_CFG_STORAGE_PORT_FCB_SECTOR_COUNT * CONFIG_PERCEPIO_DFM_CFG_STORAGE_PORT_FCB_SECTOR_SIZE))
+#if (PARTITION_SIZE(dfm_partition) < (CONFIG_PERCEPIO_DFM_CFG_STORAGE_PORT_FCB_SECTOR_COUNT * CONFIG_PERCEPIO_DFM_CFG_STORAGE_PORT_FCB_SECTOR_SIZE))
 #error "DFM: You have specified a sector count and size combination which is larger than your dfm_storage partition!"
 #endif
 
@@ -265,7 +265,7 @@ DfmResult_t xDfmStoragePortInitialize(DfmStoragePortData_t *pxBuffer)
 	xFlashCircularBuffer.f_sectors = xFlashCircularBufferSector;
 
 	/* Initialize FCB */
-	if (fcb_init(FIXED_PARTITION_ID(DFM_STORAGE_PORT_FCB_AREA_NAME), &xFlashCircularBuffer) != 0)
+	if (fcb_init(PARTITION_ID(DFM_STORAGE_PORT_FCB_AREA_NAME), &xFlashCircularBuffer) != 0)
 	{
 		return DFM_FAIL;
 	}
